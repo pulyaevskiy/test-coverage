@@ -79,8 +79,15 @@ Future<void> runTestsAndCollectCoverage() async {
     '--report-on',
     'lib/'
   ]);
-  print('Done, results are in coverage.lcov.');
   testRunner.dispose();
+
+  final coveragePath =
+      path.join(Directory.current.absolute.path, 'coverage.lcov');
+  final coverage = new File(coveragePath);
+  final data = coverage.readAsStringSync();
+  final fixedData = data.replaceAll(Directory.current.absolute.path + sep, '');
+  coverage.writeAsStringSync(fixedData);
+  print('Done, results are in coverage.lcov.');
 }
 
 class TestRunner {
