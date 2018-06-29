@@ -53,15 +53,23 @@ Future<void> runTestsAndCollectCoverage() async {
   }
 
   print('Tests completed.');
+
   print('Collecting coverage.');
-  Process.runSync('collect_coverage', [
+  Process.runSync('pub', [
+    'global',
+    'run',
+    'coverage:collect_coverage',
     '--uri=http://127.0.0.1:$port',
     '-o',
     'coverage.json',
     '--resume-isolates'
   ]);
+
   print('Formatting coverage.');
-  Process.runSync('format_coverage', [
+  Process.runSync('pub', [
+    'global',
+    'run',
+    'coverage:format_coverage',
     '--packages=.packages',
     '-i',
     'coverage.json',
