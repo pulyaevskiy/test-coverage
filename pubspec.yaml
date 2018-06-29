@@ -1,0 +1,17 @@
+name: test_coverage
+description: Runs tests in Dart VM and collects coverage data.
+version: 1.0.0
+homepage: https://github.com/pulyaevskiy/test-coverage
+author: Anatoly Pulyaevskiy <anatoly.pulyaevskiy@gmail.com>
+
+environment:
+  sdk: '>=2.0.0-dev.66.0 <2.0.0'
+
+executables:
+  test_coverage:
+
+dependencies:
+ path: ^1.6.1
+
+dev_dependencies:
+  test: ^1.0.0
