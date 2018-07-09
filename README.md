@@ -1,4 +1,4 @@
-# test_coverage
+# test_coverage [![Build Status](https://travis-ci.com/pulyaevskiy/test-coverage.svg?branch=master)](https://travis-ci.com/pulyaevskiy/test-coverage)
 
 A simple command-line tool to collect test coverage information from
 Dart VM tests. It is useful if you need to generate coverage reports
