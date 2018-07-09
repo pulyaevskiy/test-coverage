@@ -7,6 +7,13 @@ import 'dart:io';
 import 'package:test_coverage/test_coverage.dart';
 
 Future main(List<String> arguments) {
-  generateMainScript(Directory.current.path);
-  return runTestsAndCollect(Directory.current.path);
+  final packageRoot = Directory.current;
+  final testFiles = findTestFiles(packageRoot);
+  print('Found ${testFiles.length} test files.');
+  generateMainScript(packageRoot, testFiles);
+  print('Generated test-all script in test/.test_coverage.dart. '
+      'Please make sure it is added to .gitignore.');
+  return runTestsAndCollect(Directory.current.path).then((_) {
+    print('Coverage report saved to "coverage/coverage.lcov".');
+  });
 }

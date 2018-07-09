@@ -1,3 +1,6 @@
+// Copyright (c) 2018, Anatoly Pulyaevskiy. All rights reserved. Use of this source code
+// is governed by a BSD-style license that can be found in the LICENSE file.
+
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -40,8 +43,7 @@ class TestFileInfo {
   }
 }
 
-void generateMainScript(String packageRoot) {
-  final testFiles = findTestFiles(new Directory(packageRoot));
+void generateMainScript(Directory packageRoot, List<File> testFiles) {
   List<String> imports = [];
   List<String> mainBody = [];
 
@@ -61,7 +63,9 @@ void generateMainScript(String packageRoot) {
   buffer.writeln('void main() {');
   mainBody.forEach(buffer.writeln);
   buffer.writeln('}');
-  final file = new File(path.join(packageRoot, 'test', '.test_coverage.dart'));
+  final file = new File(
+    path.join(packageRoot.path, 'test', '.test_coverage.dart'),
+  );
   file.writeAsStringSync(buffer.toString());
 }
 

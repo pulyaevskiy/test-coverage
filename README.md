@@ -1,7 +1,8 @@
 # test_coverage
 
 A simple command-line tool to collect test coverage information from
-Dart VM tests.
+Dart VM tests. It is useful if you need to generate coverage reports
+locally during development.
 
 ## Usage
 
@@ -12,7 +13,7 @@ dev_dependencies:
   test_coverage: ^0.1.0
 ```
 
-Run `pub get` to install. In the root of your project:
+Run `pub get` to install. Then, in the root of your project run:
 
 ```bash
 pub run test_coverage
@@ -20,12 +21,12 @@ pub run test_coverage
 
 Result is saved in `coverage/coverage.lcov`. If you have `lcov` tool
 installed on your system (for Mac it's `brew install lcov`) you can
-generate coverage report using `genhtml` command:
+generate coverage reports using `genhtml` command:
 
 ```bash
 genhtml -o coverage coverage/coverage.lcov
 # Open in the default browser (mac):
-open coverage/coverage.html
+open coverage/index.html
 ```
 
 ## Integrations
@@ -34,6 +35,13 @@ Resulting `coverage/coverage.lcov` file is ready to be consumed by
 Codecov command-line tool, so no extra step is needed.
 
 This library was not tested with coveralls yet.
+
+## Known limitations
+
+* This library was created to run Dart VM tests. It has not been tested
+  and likely won't work for Dart code targeting web platform (compiled
+  to JavaScript). There is no need to use this tool for Flutter as it
+  allows collecting coverage information with `flutter test --coverage`.
 
 ## How it works
 
@@ -72,3 +80,8 @@ dart --pause-isolates-on-exit --enable_asserts --enable-vm-service \
 
 When test execution is completed the tool uses functionality of the
 `coverage` package to collect and format coverage report.
+
+Feel free to file feature requests and bug reports at the
+[issue tracker][].
+
+[issue tracker]: https://github.com/pulyaevskiy/test-coverage/issues
