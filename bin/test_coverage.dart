@@ -4,16 +4,23 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:path/path.dart' as path;
 import 'package:test_coverage/test_coverage.dart';
 
-Future main(List<String> arguments) {
+Future main(List<String> arguments) async {
   final packageRoot = Directory.current;
   final testFiles = findTestFiles(packageRoot);
   print('Found ${testFiles.length} test files.');
   generateMainScript(packageRoot, testFiles);
   print('Generated test-all script in test/.test_coverage.dart. '
       'Please make sure it is added to .gitignore.');
-  return runTestsAndCollect(Directory.current.path).then((_) {
+  await runTestsAndCollect(Directory.current.path).then((_) {
     print('Coverage report saved to "coverage/coverage.lcov".');
   });
+  final lcov =
+      new File(path.join(packageRoot.path, 'coverage', 'coverage.lcov'));
+  final lineCoverage = calculateLineCoverage(lcov);
+  generateBadge(packageRoot, lineCoverage);
+  final coveragePct = (lineCoverage * 100).floor();
+  print('Overall line coverage rate: $coveragePct%.');
 }

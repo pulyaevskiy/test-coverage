@@ -1,3 +1,7 @@
+## 0.2.1
+
+* Generate coverage badge in `coverage/badge.svg`.
+
 ## 0.2.0
 
 * Moved generated reports to `coverage/` subfolder.
