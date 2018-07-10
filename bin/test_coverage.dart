@@ -15,10 +15,10 @@ Future main(List<String> arguments) async {
   print('Generated test-all script in test/.test_coverage.dart. '
       'Please make sure it is added to .gitignore.');
   await runTestsAndCollect(Directory.current.path).then((_) {
-    print('Coverage report saved to "coverage/coverage.lcov".');
+    print('Coverage report saved to "coverage/lcov.info".');
   });
   final lcov =
-      new File(path.join(packageRoot.path, 'coverage', 'coverage.lcov'));
+      new File(path.join(packageRoot.path, 'coverage', 'lcov.info'));
   final lineCoverage = calculateLineCoverage(lcov);
   generateBadge(packageRoot, lineCoverage);
   final coveragePct = (lineCoverage * 100).floor();

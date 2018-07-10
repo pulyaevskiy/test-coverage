@@ -19,19 +19,19 @@ Run `pub get` to install. Then, in the root of your project run:
 pub run test_coverage
 ```
 
-Result is saved in `coverage/coverage.lcov`. If you have `lcov` tool
+Result is saved in `coverage/lcov.info`. If you have `lcov` tool
 installed on your system (for Mac it's `brew install lcov`) you can
 generate coverage reports using `genhtml` command:
 
 ```bash
-genhtml -o coverage coverage/coverage.lcov
+genhtml -o coverage coverage/lcov.info
 # Open in the default browser (mac):
 open coverage/index.html
 ```
 
 ## Integrations
 
-Resulting `coverage/coverage.lcov` file is ready to be consumed by
+Resulting `coverage/lcov.info` file is ready to be consumed by
 Codecov command-line tool, so no extra step is needed.
 
 This library was not tested with coveralls yet.

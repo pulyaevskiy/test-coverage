@@ -4,10 +4,10 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math' as math;
-import 'package:path/path.dart' as path;
+
 import 'package:coverage/coverage.dart' as coverage;
 import 'package:lcov/lcov.dart';
+import 'package:path/path.dart' as path;
 
 final _sep = path.separator;
 
@@ -118,7 +118,7 @@ Future<void> runTestsAndCollect(String packageRoot) async {
   if (!coverageDir.existsSync()) {
     coverageDir.createSync();
   }
-  final coverageFile = new File(path.join(coveragePath, 'coverage.lcov'));
+  final coverageFile = new File(path.join(coveragePath, 'lcov.info'));
   coverageFile.writeAsStringSync(coverageData);
 }
 

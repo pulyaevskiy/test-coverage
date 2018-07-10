@@ -1,3 +1,7 @@
+## 0.2.2
+
+* Renamed `coverage/coverage.lcov` to `coverage/lcov.info`.
+
 ## 0.2.1
 
 * Generate coverage badge in `coverage/badge.svg`.
