@@ -1,3 +1,7 @@
+## 0.2.3
+
+* Prepare for Dart 2 stable.
+
 ## 0.2.2
 
 * Renamed `coverage/coverage.lcov` to `coverage/lcov.info`.
