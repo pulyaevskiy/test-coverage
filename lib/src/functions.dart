@@ -100,7 +100,7 @@ Future<void> runTestsAndCollect(String packageRoot) async {
   }
   final exitStatus = await process.exitCode;
   if (exitStatus != 0) {
-    throw "Tests failed with exit code $exitStatus";
+    throw 'Tests failed with exit code $exitStatus';
   }
   final resolver = coverage.Resolver(
     packagesPath: path.join(packageRoot, '.packages'),
@@ -231,7 +231,8 @@ class _Color {
   _Color(this.r, this.g, this.b);
 
   @override
-  String toString() => "#${((1 << 24) + (r << 16) + (g << 8) + b).toRadixString(16).substring(1)}";
+  String toString() =>
+      '#${((1 << 24) + (r << 16) + (g << 8) + b).toRadixString(16).substring(1)}';
 }
 
 const _kBadgeTemplate = '''
