@@ -6,7 +6,7 @@ import 'package:test_coverage/test_coverage.dart';
 
 void main() {
   final stubPath = path.join(Directory.current.path, 'test', 'stub_package');
-  final stubRoot = new Directory(stubPath);
+  final stubRoot = Directory(stubPath);
   group('findTestFiles', () {
     test('finds only test files', () {
       final result = findTestFiles(stubRoot);
@@ -20,7 +20,7 @@ void main() {
   });
 
   group('generateMainScript', () {
-    final file = new File(path.join(stubPath, 'test', '.test_coverage.dart'));
+    final file = File(path.join(stubPath, 'test', '.test_coverage.dart'));
 
     setUp(() {
       if (file.existsSync()) {
@@ -41,16 +41,16 @@ void main() {
 
   group('$TestFileInfo', () {
     test('for file', () {
-      final a = new File(path.join(stubPath, 'test', 'a_test.dart'));
-      final info = new TestFileInfo.forFile(a);
+      final a = File(path.join(stubPath, 'test', 'a_test.dart'));
+      final info = TestFileInfo.forFile(a);
       expect(info.alias, 'a_test');
       expect(info.import, "import 'a_test.dart' as a_test;");
       expect(info.testFile, a);
     });
 
     test('for nested file', () {
-      final b = new File(path.join(stubPath, 'test', 'nested', 'b_test.dart'));
-      final info = new TestFileInfo.forFile(b);
+      final b = File(path.join(stubPath, 'test', 'nested', 'b_test.dart'));
+      final info = TestFileInfo.forFile(b);
       expect(info.alias, 'nested_b_test');
       expect(info.import, "import 'nested/b_test.dart' as nested_b_test;");
       expect(info.testFile, b);
