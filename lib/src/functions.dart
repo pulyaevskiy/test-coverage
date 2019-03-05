@@ -151,7 +151,7 @@ double calculateLineCoverage(File lcovReport) {
 
 void generateBadge(Directory packageRoot, double lineCoverage) {
   const leftWidth = 59;
-  final value = (lineCoverage * 100).floor().toString() + '%';
+  final value = '${(lineCoverage * 100).floor()}%';
   final color = _color(lineCoverage);
   final metrics = new _BadgeMetrics.forPercentage(lineCoverage);
   final rightWidth = metrics.width - leftWidth;
@@ -234,7 +234,7 @@ class _Color {
   _Color(this.r, this.g, this.b);
 
   @override
-  String toString() => "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toRadixString(16).substring(1);
+  String toString() => "#${((1 << 24) + (r << 16) + (g << 8) + b).toRadixString(16).substring(1)}";
 }
 
 const _kBadgeTemplate = '''
