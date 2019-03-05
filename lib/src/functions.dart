@@ -15,7 +15,7 @@ List<File> findTestFiles(Directory packageRoot) {
   final testsPath = path.join(packageRoot.absolute.path, 'test');
   final testsRoot = new Directory(testsPath);
   final contents = testsRoot.listSync(recursive: true);
-  final List<File> result = [];
+  final result = <File>[];
   for (final item in contents) {
     if (item is! File) continue;
     if (!item.path.endsWith('_test.dart')) continue;
@@ -32,7 +32,7 @@ class TestFileInfo {
   TestFileInfo._(this.testFile, this.alias, this.import);
   factory TestFileInfo.forFile(File testFile) {
     final parts = testFile.absolute.path.split(_sep).toList();
-    List<String> relative = <String>[];
+    var relative = <String>[];
     while (parts.last != 'test') {
       relative.add(parts.last);
       parts.removeLast();
@@ -138,8 +138,8 @@ Uri _extractObservatoryUri(String str) {
 
 double calculateLineCoverage(File lcovReport) {
   final report = new Report.fromCoverage(lcovReport.readAsStringSync());
-  int totalLines = 0;
-  int hitLines = 0;
+  var totalLines = 0;
+  var hitLines = 0;
   for (final rec in report.records) {
     for (final line in rec.lines.data) {
       totalLines++;
