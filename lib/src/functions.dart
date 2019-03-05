@@ -16,7 +16,7 @@ List<File> findTestFiles(Directory packageRoot) {
   final testsRoot = new Directory(testsPath);
   final contents = testsRoot.listSync(recursive: true);
   final List<File> result = [];
-  for (var item in contents) {
+  for (final item in contents) {
     if (item is! File) continue;
     if (!item.path.endsWith('_test.dart')) continue;
     result.add(item);
@@ -49,7 +49,7 @@ void generateMainScript(Directory packageRoot, List<File> testFiles) {
   final imports = <String>[];
   final mainBody = <String>[];
 
-  for (var test in testFiles) {
+  for (final test in testFiles) {
     final info = new TestFileInfo.forFile(test);
     imports.add(info.import);
     mainBody.add('  ${info.alias}.main();');
@@ -140,8 +140,8 @@ double calculateLineCoverage(File lcovReport) {
   final report = new Report.fromCoverage(lcovReport.readAsStringSync());
   int totalLines = 0;
   int hitLines = 0;
-  for (var rec in report.records) {
-    for (var line in rec.lines.data) {
+  for (final rec in report.records) {
+    for (final line in rec.lines.data) {
       totalLines++;
       hitLines += (line.executionCount > 0) ? 1 : 0;
     }
@@ -207,7 +207,7 @@ String _color(double percentage) {
   };
   double lower;
   double upper;
-  for (var key in map.keys) {
+  for (final key in map.keys) {
     if (percentage < key) {
       upper = key;
       break;
