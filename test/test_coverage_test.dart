@@ -5,8 +5,8 @@ import 'package:test/test.dart';
 import 'package:test_coverage/test_coverage.dart';
 
 void main() {
-  String stubPath = path.join(Directory.current.path, 'test', 'stub_package');
-  Directory stubRoot = new Directory(stubPath);
+  final stubPath = path.join(Directory.current.path, 'test', 'stub_package');
+  final stubRoot = new Directory(stubPath);
   group('findTestFiles', () {
     test('finds only test files', () {
       final result = findTestFiles(stubRoot);
