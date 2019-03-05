@@ -234,10 +234,7 @@ class _Color {
   _Color(this.r, this.g, this.b);
 
   @override
-  String toString() {
-    return "#" +
-        ((1 << 24) + (r << 16) + (g << 8) + b).toRadixString(16).substring(1);
-  }
+  String toString() => "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toRadixString(16).substring(1);
 }
 
 const _kBadgeTemplate = '''
