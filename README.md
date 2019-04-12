@@ -49,6 +49,8 @@ The tool performs following steps:
 
 ### 1. Generates `test/.test_coverage.dart` file which is essentially a "test all" script.
 
+`.test_coverage.dart` scans `test` directory to find all files that thier name follow this pattern: `*_test.dart`. Then it imports them and calls the `main` functions of them.
+
 It is recommended to add this file to your `.gitignore`.
 
 Below is an example of `test/.test_coverage.dart`:
