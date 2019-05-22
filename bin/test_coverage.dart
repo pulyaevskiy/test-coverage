@@ -17,8 +17,7 @@ Future main(List<String> arguments) async {
   await runTestsAndCollect(Directory.current.path).then((_) {
     print('Coverage report saved to "coverage/lcov.info".');
   });
-  final lcov =
-      new File(path.join(packageRoot.path, 'coverage', 'lcov.info'));
+  final lcov = new File(path.join(packageRoot.path, 'coverage', 'lcov.info'));
   final lineCoverage = calculateLineCoverage(lcov);
   generateBadge(packageRoot, lineCoverage);
   final coveragePct = (lineCoverage * 100).floor();
