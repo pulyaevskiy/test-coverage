@@ -1,6 +1,7 @@
 language: dart
 
 dart:
+- "2.3.0"
 - dev
 
 #before_script:
