@@ -1,3 +1,8 @@
+## 0.2.4
+
+- Upgraded dependencies.
+- Bumped SDK constraint to `2.3.0`.
+
 ## 0.2.3
 
 * Prepare for Dart 2 stable.
