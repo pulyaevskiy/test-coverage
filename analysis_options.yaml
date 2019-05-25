@@ -1,8 +1,8 @@
 include: package:pedantic/analysis_options.yaml
 
 analyzer:
-#   exclude:
-#     - path/to/excluded/files/**
+   exclude:
+     - test/.test_coverage.dart
 
 # Lint rules and documentation, see http://dart-lang.github.io/linter/lints
 linter:

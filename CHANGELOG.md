@@ -1,3 +1,6 @@
+## 0.2.5
+* Refactor code for Dart 2.0 features
+
 ## 0.2.4
 
 - Upgraded dependencies.
