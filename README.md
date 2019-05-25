@@ -1,4 +1,4 @@
-# test_coverage [![Build Status](https://travis-ci.com/pulyaevskiy/test-coverage.svg?branch=master)](https://travis-ci.com/pulyaevskiy/test-coverage) [![Pub](https://img.shields.io/pub/v/test_coverage.svg?style=flat)](https://pub.dartlang.org/packages/test_coverage) ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg)
+# test_coverage [![Build Status](https://travis-ci.com/pulyaevskiy/test-coverage.svg?branch=master)](https://travis-ci.com/pulyaevskiy/test-coverage) [![Pub](https://img.shields.io/pub/v/test_coverage.svg?style=flat)](https://pub.dartlang.org/packages/test_coverage) ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg?sanitize=true)
 
 A simple command-line tool to collect test coverage information from
 Dart VM tests. It is useful if you need to generate coverage reports
