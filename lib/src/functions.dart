@@ -6,12 +6,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:coverage/coverage.dart' as coverage;
+import 'package:glob/glob.dart';
 import 'package:lcov/lcov.dart';
 import 'package:path/path.dart' as path;
 
 final _sep = path.separator;
 
-List<File> findTestFiles(Directory packageRoot) {
+List<File> findTestFiles(Directory packageRoot, {Glob excludeGlob}) {
   final testsPath = path.join(packageRoot.absolute.path, 'test');
   final testsRoot = Directory(testsPath);
   final contents = testsRoot.listSync(recursive: true);
@@ -19,6 +20,10 @@ List<File> findTestFiles(Directory packageRoot) {
   for (final item in contents) {
     if (item is! File) continue;
     if (!item.path.endsWith('_test.dart')) continue;
+    final relativePath = item.path.substring(packageRoot.path.length + 1);
+    if (excludeGlob != null && excludeGlob.matches(relativePath)) {
+      continue;
+    }
     result.add(item);
   }
   return result;
@@ -159,7 +164,7 @@ void generateBadge(Directory packageRoot, double lineCoverage) {
       .replaceAll('{rightLength}', metrics.rightLength.toString())
       .replaceAll('{color}', color.toString())
       .replaceAll('{value}', value.toString());
-  File(path.join(packageRoot.path, 'coverage', 'badge.svg'))
+  File(path.join(packageRoot.path, 'coverage_badge.svg'))
       .writeAsStringSync(content);
 }
 
