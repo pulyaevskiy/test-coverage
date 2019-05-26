@@ -1,4 +1,4 @@
-# test_coverage [![Build Status](https://travis-ci.com/pulyaevskiy/test-coverage.svg?branch=master)](https://travis-ci.com/pulyaevskiy/test-coverage) [![Pub](https://img.shields.io/pub/v/test_coverage.svg?style=flat)](https://pub.dartlang.org/packages/test_coverage) ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg?sanitize=true)
+# test_coverage [![Build Status](https://travis-ci.com/pulyaevskiy/test-coverage.svg?branch=master)](https://travis-ci.com/pulyaevskiy/test-coverage) [![Pub](https://img.shields.io/pub/v/test_coverage.svg?style=flat)](https://pub.dartlang.org/packages/test_coverage) ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/master/coverage_badge.svg?sanitize=true)
 
 A simple command-line tool to collect test coverage information from
 Dart VM tests. It is useful if you need to generate coverage reports
@@ -38,7 +38,7 @@ This library was not tested with coveralls yet.
 
 ## Generating badge image
 
-![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg?sanitize=true)
+![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/master/coverage_badge.svg?sanitize=true)
 
 Coverage badge SVG image is automatically generated and saved to `coverage_badge.svg` in your
 project root directory. You can add it to Git and use in README.md on Github as follows:
