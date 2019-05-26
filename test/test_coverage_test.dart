@@ -27,6 +27,8 @@ void main() {
     final badgeFile = File(path.join(stubPath, 'coverage_badge.svg'));
 
     setUp(() {
+      Process.runSync('pub', ['get'], workingDirectory: stubPath);
+
       if (testFile.existsSync()) testFile.deleteSync();
       if (coverageDir.existsSync()) coverageDir.deleteSync(recursive: true);
       if (badgeFile.existsSync()) badgeFile.deleteSync();
