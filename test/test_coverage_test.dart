@@ -6,10 +6,10 @@ import 'package:test_coverage/test_coverage.dart';
 
 void main() {
   final stubPath = path.join(Directory.current.path, 'test', 'stub_package');
-  final stubRoot = Directory(stubPath);
+  final stubDir = Directory(stubPath);
   group('findTestFiles', () {
     test('finds only test files', () {
-      final result = findTestFiles(stubRoot);
+      final result = findTestFiles(stubDir);
       expect(result, hasLength(2));
       final filenames =
           result.map((f) => f.path.split(path.separator).last).toList();
@@ -19,23 +19,46 @@ void main() {
     });
   });
 
-  group('generateMainScript', () {
-    final file = File(path.join(stubPath, 'test', '.test_coverage.dart'));
+  group('smoke test', () {
+    final coverageDir = Directory(path.join(stubPath, 'coverage'));
+    final Directory savedCurrent = Directory.current;
+    final testFile = File(path.join(stubPath, 'test', '.test_coverage.dart'));
+    final lcovFile = File(path.join(coverageDir.path, 'lcov.info'));
+    final badgeFile = File(path.join(stubPath, 'coverage_badge.svg'));
 
     setUp(() {
-      if (file.existsSync()) {
-        file.deleteSync();
-      }
-      expect(file.existsSync(), isFalse);
+      if (testFile.existsSync()) testFile.deleteSync();
+      if (coverageDir.existsSync()) coverageDir.deleteSync(recursive: true);
+      if (badgeFile.existsSync()) badgeFile.deleteSync();
+
+      // Set working directory for current process because Lcov formatter
+      // relies on it to resolve absolute paths for dart files in stub_package.
+      Directory.current = stubPath;
     });
 
-    test('creates main script', () {
-      final files = findTestFiles(stubRoot);
-      generateMainScript(stubRoot, files);
-      expect(file.existsSync(), isTrue);
-      final content = file.readAsStringSync();
+    tearDown(() {
+      Directory.current = savedCurrent.path;
+    });
+
+    test('run', () async {
+      final files = findTestFiles(stubDir);
+      generateMainScript(stubDir, files);
+      expect(testFile.existsSync(), isTrue);
+      final content = testFile.readAsStringSync();
       expect(content, contains("a_test.main();"));
       expect(content, contains("nested_b_test.main();"));
+
+      // Set custom port so that when running test_coverage for this test
+      // we can start another Observatory for stub_package on the default port.
+      await runTestsAndCollect(stubPath, '8585');
+
+      expect(lcovFile.existsSync(), isTrue);
+
+      final coverageValue = calculateLineCoverage(lcovFile);
+      expect(coverageValue, 1.0);
+      generateBadge(stubDir, coverageValue);
+
+      expect(badgeFile.existsSync(), isTrue);
     });
   });
 

@@ -74,28 +74,40 @@ void generateMainScript(Directory packageRoot, List<File> testFiles) {
   ).writeAsStringSync(buffer.toString());
 }
 
-Future<void> runTestsAndCollect(String packageRoot) async {
+Future<void> runTestsAndCollect(String packageRoot, String port) async {
   final script = path.join(packageRoot, 'test', '.test_coverage.dart');
   final dartArgs = [
     '--pause-isolates-on-exit',
     '--enable_asserts',
-    '--enable-vm-service',
+    '--enable-vm-service=$port',
     script
   ];
 
-  final process = await Process.start('dart', dartArgs);
+  final process =
+      await Process.start('dart', dartArgs, workingDirectory: packageRoot);
   final serviceUriCompleter = Completer<Uri>();
   process.stdout
       .transform(utf8.decoder)
       .transform(const LineSplitter())
       .listen((line) {
+    if (serviceUriCompleter.isCompleted) return;
     final uri = _extractObservatoryUri(line);
     if (uri != null) {
       serviceUriCompleter.complete(uri);
+    } else {
+      serviceUriCompleter.completeError(line);
     }
   });
 
-  final serviceUri = await serviceUriCompleter.future;
+  final serviceUri = await serviceUriCompleter.future.catchError((error) {
+    process.kill(ProcessSignal.sigkill);
+  });
+
+  if (serviceUri == null) {
+    throw new StateError("Could not run tests with Observatory enabled. "
+        "Try setting a different port with --port option.");
+  }
+
   Map<String, Map<int, int>> hitmap;
   try {
     final data = await coverage.collect(serviceUri, true, true);

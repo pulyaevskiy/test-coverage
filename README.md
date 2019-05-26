@@ -36,6 +36,17 @@ Codecov command-line tool, so no extra step is needed.
 
 This library was not tested with coveralls yet.
 
+## Generating badge image ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg?sanitize=true)
+
+Badge SVG image is automatically generated and save to `coverage_badge.svg` in your project root
+directory. You can add it to Git and use in README.md as follows:
+
+```md
+![Coverage](https://raw.githubusercontent.com/{you}/{repo}/master/coverage_badge.svg?sanitize=true)
+```
+
+If you don't need it you can pass `--no-badge` flag when running test coverage.
+
 ## Known limitations
 
 * This library was created to run Dart VM tests. It has not been tested
