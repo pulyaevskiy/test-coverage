@@ -1,6 +1,6 @@
 name: test_coverage
 description: Command line utility to run tests in Dart VM and collect coverage data.
-version: 0.2.5
+version: 0.3.0
 homepage: https://github.com/pulyaevskiy/test-coverage
 author: Anatoly Pulyaevskiy <anatoly.pulyaevskiy@gmail.com>
 
@@ -14,6 +14,8 @@ dependencies:
   coverage: ^0.12.1
   path: ^1.6.1
   lcov: ^5.3.0
+  glob: ^1.1.7
+  args: ^1.5.1
 
 dev_dependencies:
   test: ^1.0.0

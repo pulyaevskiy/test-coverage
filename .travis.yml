@@ -4,12 +4,8 @@ dart:
 - "2.3.0"
 - dev
 
-#before_script:
-#- pub global activate --source path .
-
 script:
-- pub run test -r expanded
+- pub run test_coverage --exclude="test/stub_package/**"
 - dartfmt -n --set-exit-if-changed lib/
 - dartanalyzer --fatal-infos --fatal-warnings .
-#- pub global run test_coverage
 #- bash <(curl -s https://codecov.io/bash)

@@ -1,10 +1,16 @@
-## 0.2.5
-* Refactor code for Dart 2.0 features
+## 0.3.0
+
+* Refactor code for Dart 2.0 features.
+* Added `--exclude`, `--port`, `--help` and `--[no-]badge` options. See `pub run test_coverage -h` 
+  for more details.
+* Coverage badge moved from `coverage/badge.svg` to `coverage_badge.svg` (in the package root)
+  which makes it easier to manage `coverage/` in `.gitignore`, allows you to commit the badge
+  to your repo and include it in the `README.md`.
 
 ## 0.2.4
 
-- Upgraded dependencies.
-- Bumped SDK constraint to `2.3.0`.
+* Upgraded dependencies.
+* Bumped SDK constraint to `2.3.0`.
 
 ## 0.2.3
 
@@ -27,8 +33,8 @@
 
 ## 0.1.1
 
-- Make paths in lcov file relative to the project root.
+* Make paths in lcov file relative to the project root.
 
 ## 0.1.0
 
-- Initial version
+* Initial version

@@ -6,12 +6,13 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:coverage/coverage.dart' as coverage;
+import 'package:glob/glob.dart';
 import 'package:lcov/lcov.dart';
 import 'package:path/path.dart' as path;
 
 final _sep = path.separator;
 
-List<File> findTestFiles(Directory packageRoot) {
+List<File> findTestFiles(Directory packageRoot, {Glob excludeGlob}) {
   final testsPath = path.join(packageRoot.absolute.path, 'test');
   final testsRoot = Directory(testsPath);
   final contents = testsRoot.listSync(recursive: true);
@@ -19,6 +20,10 @@ List<File> findTestFiles(Directory packageRoot) {
   for (final item in contents) {
     if (item is! File) continue;
     if (!item.path.endsWith('_test.dart')) continue;
+    final relativePath = item.path.substring(packageRoot.path.length + 1);
+    if (excludeGlob != null && excludeGlob.matches(relativePath)) {
+      continue;
+    }
     result.add(item);
   }
   return result;
@@ -69,28 +74,40 @@ void generateMainScript(Directory packageRoot, List<File> testFiles) {
   ).writeAsStringSync(buffer.toString());
 }
 
-Future<void> runTestsAndCollect(String packageRoot) async {
+Future<void> runTestsAndCollect(String packageRoot, String port) async {
   final script = path.join(packageRoot, 'test', '.test_coverage.dart');
   final dartArgs = [
     '--pause-isolates-on-exit',
     '--enable_asserts',
-    '--enable-vm-service',
+    '--enable-vm-service=$port',
     script
   ];
 
-  final process = await Process.start('dart', dartArgs);
+  final process =
+      await Process.start('dart', dartArgs, workingDirectory: packageRoot);
   final serviceUriCompleter = Completer<Uri>();
   process.stdout
       .transform(utf8.decoder)
       .transform(const LineSplitter())
       .listen((line) {
+    if (serviceUriCompleter.isCompleted) return;
     final uri = _extractObservatoryUri(line);
     if (uri != null) {
       serviceUriCompleter.complete(uri);
+    } else {
+      serviceUriCompleter.completeError(line);
     }
   });
 
-  final serviceUri = await serviceUriCompleter.future;
+  final serviceUri = await serviceUriCompleter.future.catchError((error) {
+    process.kill(ProcessSignal.sigkill);
+  });
+
+  if (serviceUri == null) {
+    throw new StateError("Could not run tests with Observatory enabled. "
+        "Try setting a different port with --port option.");
+  }
+
   Map<String, Map<int, int>> hitmap;
   try {
     final data = await coverage.collect(serviceUri, true, true);
@@ -159,7 +176,7 @@ void generateBadge(Directory packageRoot, double lineCoverage) {
       .replaceAll('{rightLength}', metrics.rightLength.toString())
       .replaceAll('{color}', color.toString())
       .replaceAll('{value}', value.toString());
-  File(path.join(packageRoot.path, 'coverage', 'badge.svg'))
+  File(path.join(packageRoot.path, 'coverage_badge.svg'))
       .writeAsStringSync(content);
 }
 

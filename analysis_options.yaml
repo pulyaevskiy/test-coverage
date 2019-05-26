@@ -3,6 +3,7 @@ include: package:pedantic/analysis_options.yaml
 analyzer:
    exclude:
      - test/.test_coverage.dart
+     - test/stub_package/**
 
 # Lint rules and documentation, see http://dart-lang.github.io/linter/lints
 linter:
