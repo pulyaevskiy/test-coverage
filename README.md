@@ -10,7 +10,7 @@ Add dev dependency to your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  test_coverage: ^0.2.0
+  test_coverage: ^0.3.0
 ```
 
 Run `pub get` to install. Then, in the root of your project run:
@@ -60,9 +60,11 @@ If you don't need it you can pass `--no-badge` flag when running test coverage.
 
 The tool performs following steps:
 
-### 1. Generates `test/.test_coverage.dart` file which is essentially a "test all" script.
+### 1. Generates `test/.test_coverage.dart` file (a "test all" script).
 
-`.test_coverage.dart` scans `test` directory to find all files that thier name follow this pattern: `*_test.dart`. Then it imports them and calls the `main` functions of them.
+Scans your `test/` directory to find all `*_test.dart` files and creates `test/.test_coverage.dart`
+which imports all found test files and runs corresponding `main()` of all tests functions within
+the same file (and process), which simplifies collection of coverage information.
 
 It is recommended to add this file to your `.gitignore`.
 
@@ -75,6 +77,7 @@ Below is an example of `test/.test_coverage.dart`:
 import 'some_test.dart' as some_test;
 import 'nested/other_test.dart' as other_test;
 import 'some_other_test.dart' as some_other_test;
+
 void main() {
   some_test.main();
   other_test.main();
