@@ -1,10 +1,10 @@
-## 0.2.5
+## 0.3.0
 
 * Refactor code for Dart 2.0 features.
 * Added `--exclude`, `--port`, `--help` and `--[no-]badge` options. See `pub run test_coverage -h` 
   for more details.
 * Coverage badge moved from `coverage/badge.svg` to `coverage_badge.svg` (in the package root)
-  which makes it easier to exclude `coverage/` in `.gitignore`, allows you to commit the badge
+  which makes it easier to manage `coverage/` in `.gitignore`, allows you to commit the badge
   to your repo and include it in the `README.md`.
 
 ## 0.2.4

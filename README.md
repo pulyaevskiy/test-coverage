@@ -38,10 +38,10 @@ This library was not tested with coveralls yet.
 
 ## Generating badge image
 
-Example: ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg?sanitize=true)
+![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/use-self-for-test-coverage/coverage_badge.svg?sanitize=true)
 
 Coverage badge SVG image is automatically generated and saved to `coverage_badge.svg` in your
-project root directory. You can add it to Git and use in README.md as follows:
+project root directory. You can add it to Git and use in README.md on Github as follows:
 
 ```md
 ![Coverage](https://raw.githubusercontent.com/{you}/{repo}/master/coverage_badge.svg?sanitize=true)
