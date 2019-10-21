@@ -103,3 +103,17 @@ Feel free to file feature requests and bug reports at the
 [issue tracker][].
 
 [issue tracker]: https://github.com/pulyaevskiy/test-coverage/issues
+
+### 4. Minimal coverage percentage
+
+Set minimal coverage percentage to pass
+`min-coverage` percentage value of coverage.
+
+### 5. See test output
+
+Show output of tests
+
+Feel free to file feature requests and bug reports at the
+[issue tracker][].
+
+[issue tracker]: https://github.com/pulyaevskiy/test-coverage/issues

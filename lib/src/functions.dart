@@ -74,7 +74,7 @@ void generateMainScript(Directory packageRoot, List<File> testFiles) {
   ).writeAsStringSync(buffer.toString());
 }
 
-Future<void> runTestsAndCollect(String packageRoot, String port) async {
+Future<void> runTestsAndCollect(String packageRoot, String port, {bool printOutput = false}) async {
   final script = path.join(packageRoot, 'test', '.test_coverage.dart');
   final dartArgs = [
     '--pause-isolates-on-exit',
@@ -82,7 +82,6 @@ Future<void> runTestsAndCollect(String packageRoot, String port) async {
     '--enable-vm-service=$port',
     script
   ];
-
   final process =
       await Process.start('dart', dartArgs, workingDirectory: packageRoot);
   final serviceUriCompleter = Completer<Uri>();
@@ -90,6 +89,7 @@ Future<void> runTestsAndCollect(String packageRoot, String port) async {
       .transform(utf8.decoder)
       .transform(const LineSplitter())
       .listen((line) {
+    if (printOutput) print(line);
     if (serviceUriCompleter.isCompleted) return;
     final uri = _extractObservatoryUri(line);
     if (uri != null) {
