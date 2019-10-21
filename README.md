@@ -110,6 +110,7 @@ Set minimal coverage percentage to pass
 `min-coverage` percentage value of coverage.
 
 ### 5. See test output
+`print-test-output` to show test output.
 
 Show output of tests
 
