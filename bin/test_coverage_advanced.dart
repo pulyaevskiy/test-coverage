@@ -7,7 +7,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
-import 'package:test_coverage_advanced/test_coverage.dart';
+import 'package:test_coverage_advanced/test_coverage_advanced.dart';
 
 Future main(List<String> arguments) async {
   final packageRoot = Directory.current;
