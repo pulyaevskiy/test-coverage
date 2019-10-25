@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:path/path.dart' as path;
 import 'package:test/test.dart';
-import 'package:test_coverage/test_coverage.dart';
+import 'package:test_coverage_advanced/test_coverage.dart';
 
 void main() {
   final stubPath = path.join(Directory.current.path, 'test', 'stub_package');
