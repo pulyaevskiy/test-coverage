@@ -104,7 +104,7 @@ Future<void> runTestsAndCollect(String packageRoot, String port) async {
   });
 
   if (serviceUri == null) {
-    throw new StateError("Could not run tests with Observatory enabled. "
+    throw StateError("Could not run tests with Observatory enabled. "
         "Try setting a different port with --port option.");
   }
 
