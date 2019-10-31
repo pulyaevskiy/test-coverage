@@ -12,7 +12,7 @@ import 'package:test_coverage/test_coverage.dart';
 Future main(List<String> arguments) async {
   final packageRoot = Directory.current;
 
-  final parser = new ArgParser();
+  final parser = ArgParser();
   parser.addFlag('help', abbr: 'h', help: 'Show usage', negatable: false);
   parser.addOption(
     'exclude',
@@ -38,7 +38,7 @@ Future main(List<String> arguments) async {
 
   Glob excludeGlob;
   if (options['exclude'] is String) {
-    excludeGlob = new Glob(options['exclude']);
+    excludeGlob = Glob(options['exclude']);
   }
 
   String port = options['port'];
