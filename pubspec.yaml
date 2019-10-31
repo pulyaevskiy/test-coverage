@@ -11,7 +11,7 @@ executables:
   test_coverage:
 
 dependencies:
-  coverage: ^0.12.1
+  coverage: ^0.13.0
   path: ^1.6.1
   lcov: ^5.3.0
   glob: ^1.1.7
