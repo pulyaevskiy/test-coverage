@@ -104,8 +104,8 @@ Future<void> runTestsAndCollect(String packageRoot, String port, {bool printOutp
   });
 
   if (serviceUri == null) {
-    throw StateError("Could not run tests with Observatory enabled. "
-        "Try setting a different port with --port option.");
+    throw StateError('Could not run tests with Observatory enabled. '
+        'Try setting a different port with --port option.');
   }
 
   Map<String, Map<int, int>> hitmap;

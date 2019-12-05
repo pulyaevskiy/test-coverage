@@ -35,7 +35,7 @@ Future main(List<String> arguments) async {
 
   parser.addOption('min-coverage',
       help: 'Min coverage to pass',
-      defaultsTo: "0");
+      defaultsTo: '0');
 
   final options = parser.parse(arguments);
 
@@ -56,7 +56,7 @@ Future main(List<String> arguments) async {
   generateMainScript(packageRoot, testFiles);
   print('Generated test-all script in test/.test_coverage.dart. '
       'Please make sure it is added to .gitignore.');
-  await runTestsAndCollect(Directory.current.path, port, printOutput: options.wasParsed("print-test-output")).then((_) {
+  await runTestsAndCollect(Directory.current.path, port, printOutput: options.wasParsed('print-test-output')).then((_) {
     print('Coverage report saved to "coverage/lcov.info".');
   });
   final lcov = File(path.join(packageRoot.path, 'coverage', 'lcov.info'));
@@ -64,7 +64,7 @@ Future main(List<String> arguments) async {
   generateBadge(packageRoot, lineCoverage);
   final coveragePct = (lineCoverage * 100).floor();
   print('Overall line coverage rate: $coveragePct%.');
-  final minCoverage = int.parse(options["min-coverage"]);
+  final minCoverage = int.parse(options['min-coverage']);
   if (coveragePct < minCoverage) {
     print('Overall coverage $coveragePct is less than minimum required coverage $minCoverage');
     exit(1);
