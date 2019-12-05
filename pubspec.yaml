@@ -1,8 +1,8 @@
 name: test_coverage_advanced
 description: Command line utility to run tests in Dart VM and collect coverage data.
-version: 0.3.1+2
-homepage: https://github.com/rafaldziuryk/test-coverage
-author: Rafał Dziuryk <rafal.dziuryk@gmail.com>
+version: 0.3.1
+homepage: https://github.com/pulyaevskiy/test-coverage
+author: Anatoly Pulyaevskiy <anatoly.pulyaevskiy@gmail.com>
 
 environment:
   sdk: '>=2.3.0 <3.0.0'

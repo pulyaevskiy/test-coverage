@@ -7,7 +7,7 @@ import 'dart:io';
 import 'package:args/args.dart';
 import 'package:glob/glob.dart';
 import 'package:path/path.dart' as path;
-import 'package:test_coverage_advanced/test_coverage_advanced.dart';
+import 'package:test_coverage/test_coverage.dart';
 
 Future main(List<String> arguments) async {
   final packageRoot = Directory.current;
@@ -66,7 +66,7 @@ Future main(List<String> arguments) async {
   print('Overall line coverage rate: $coveragePct%.');
   final minCoverage = int.parse(options["min-coverage"]);
   if (coveragePct < minCoverage) {
-    print('Overall coverage $coveragePct is small then minimal coverage $minCoverage');
+    print('Overall coverage $coveragePct is less than minimum required coverage $minCoverage');
     exit(1);
   }
 
