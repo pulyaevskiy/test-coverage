@@ -1,4 +1,4 @@
-name: test_coverage_advanced
+name: test_coverage
 description: Command line utility to run tests in Dart VM and collect coverage data.
 version: 0.3.1
 homepage: https://github.com/pulyaevskiy/test-coverage
