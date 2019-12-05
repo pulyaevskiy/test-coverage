@@ -1,3 +1,7 @@
+## 0.4.0
+
+* Upgraded to coverage 0.13.0 (#8)
+
 ## 0.3.0
 
 * Refactor code for Dart 2.0 features.

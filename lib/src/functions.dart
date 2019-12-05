@@ -104,13 +104,13 @@ Future<void> runTestsAndCollect(String packageRoot, String port, {bool printOutp
   });
 
   if (serviceUri == null) {
-    throw new StateError("Could not run tests with Observatory enabled. "
+    throw StateError("Could not run tests with Observatory enabled. "
         "Try setting a different port with --port option.");
   }
 
   Map<String, Map<int, int>> hitmap;
   try {
-    final data = await coverage.collect(serviceUri, true, true);
+    final data = await coverage.collect(serviceUri, true, true, false, {});
     hitmap = coverage.createHitmap(data['coverage']);
   } finally {
     await process.stderr.drain<List<int>>();
