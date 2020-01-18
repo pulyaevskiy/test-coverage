@@ -10,7 +10,7 @@ Add dev dependency to your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  test_coverage: ^0.3.1
+  test_coverage: ^0.4.2
 ```
 
 Run `pub get` to install. Then, in the root of your project run:
