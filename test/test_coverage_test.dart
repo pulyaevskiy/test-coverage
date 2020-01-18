@@ -21,7 +21,7 @@ void main() {
 
   group('smoke test', () {
     final coverageDir = Directory(path.join(stubPath, 'coverage'));
-    final Directory savedCurrent = Directory.current;
+    final savedCurrent = Directory.current;
     final testFile = File(path.join(stubPath, 'test', '.test_coverage.dart'));
     final lcovFile = File(path.join(coverageDir.path, 'lcov.info'));
     final badgeFile = File(path.join(stubPath, 'coverage_badge.svg'));
@@ -47,8 +47,8 @@ void main() {
       generateMainScript(stubDir, files);
       expect(testFile.existsSync(), isTrue);
       final content = testFile.readAsStringSync();
-      expect(content, contains("a_test.main();"));
-      expect(content, contains("nested_b_test.main();"));
+      expect(content, contains('a_test.main();'));
+      expect(content, contains('nested_b_test.main();'));
 
       // Set custom port so that when running test_coverage for this test
       // we can start another Observatory for stub_package on the default port.

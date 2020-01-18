@@ -1,3 +1,7 @@
+## 0.4.1
+
+* Fixed test generator for windows platform (#11)
+
 ## 0.4.0
 
 * Upgraded to coverage 0.13.0 (#8)
