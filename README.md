@@ -10,7 +10,7 @@ Add dev dependency to your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  test_coverage: ^0.4.1
+  test_coverage: ^0.4.2
 ```
 
 Run `pub get` to install. Then, in the root of your project run:
@@ -98,6 +98,21 @@ dart --pause-isolates-on-exit --enable_asserts --enable-vm-service \
 
 When test execution is completed the tool uses functionality of the
 `coverage` package to collect and format coverage report.
+
+Feel free to file feature requests and bug reports at the
+[issue tracker][].
+
+[issue tracker]: https://github.com/pulyaevskiy/test-coverage/issues
+
+### 4. Minimal coverage percentage
+
+Set minimal coverage percentage to pass
+`min-coverage` percentage value of coverage.
+
+### 5. See test output
+`print-test-output` to show test output.
+
+Show output of tests
 
 Feel free to file feature requests and bug reports at the
 [issue tracker][].

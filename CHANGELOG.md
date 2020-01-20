@@ -1,3 +1,7 @@
+## 0.4.2
+
+* Minimal coverage percentage & test output to console
+
 ## 0.4.1
 
 * Fixed test generator for windows platform (#11)
