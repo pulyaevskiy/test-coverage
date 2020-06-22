@@ -1,3 +1,7 @@
+## 0.4.3
+
+- Fix support for --[no-]badge. (#21)
+
 ## 0.4.2
 
 * Minimal coverage percentage & test output to console
