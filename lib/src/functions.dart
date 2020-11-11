@@ -113,7 +113,7 @@ Future<void> runTestsAndCollect(String packageRoot, String port,
   Map<String, Map<int, int>> hitmap;
   try {
     final data = await coverage.collect(serviceUri, true, true, false, {});
-    hitmap = coverage.createHitmap(data['coverage']);
+    hitmap = await coverage.createHitmap(data['coverage']);
   } finally {
     await process.stderr.drain<List<int>>();
   }
