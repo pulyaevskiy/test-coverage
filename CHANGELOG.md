@@ -1,3 +1,8 @@
+## 0.5.0
+
+- Updated dependency on coverage package to ^0.14.1 (#24)
+- Badge generation now honours the corresponding command line argument (#27)
+
 ## 0.4.3
 
 - Fix support for --[no-]badge. (#21)
@@ -17,7 +22,7 @@
 ## 0.3.0
 
 * Refactor code for Dart 2.0 features.
-* Added `--exclude`, `--port`, `--help` and `--[no-]badge` options. See `pub run test_coverage -h` 
+* Added `--exclude`, `--port`, `--help` and `--[no-]badge` options. See `pub run test_coverage -h`
   for more details.
 * Coverage badge moved from `coverage/badge.svg` to `coverage_badge.svg` (in the package root)
   which makes it easier to manage `coverage/` in `.gitignore`, allows you to commit the badge
