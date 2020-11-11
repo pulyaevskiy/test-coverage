@@ -64,7 +64,7 @@ Future main(List<String> arguments) async {
   });
   final lcov = File(path.join(packageRoot.path, 'coverage', 'lcov.info'));
   final lineCoverage = calculateLineCoverage(lcov);
-  generateBadge(packageRoot, lineCoverage);
+  if (options['badge']) generateBadge(packageRoot, lineCoverage);
   final coveragePct = (lineCoverage * 100).floor();
   print('Overall line coverage rate: $coveragePct%.');
   final minCoverage = int.parse(options['min-coverage']);
