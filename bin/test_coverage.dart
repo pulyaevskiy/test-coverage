@@ -32,6 +32,20 @@ Future main(List<String> arguments) async {
     negatable: true,
   );
 
+  parser.addFlag('import-all-source',
+      abbr: 'i',
+      help:
+          'Import all source files for Dart Observatory when running tests.',
+      defaultsTo: false,
+      negatable: false);
+
+  parser.addOption(
+    'import-all-source-exclude',
+    help:
+        'Exclude specific source files or directories from Dart Observatory using glob pattern (relative to package root), '
+        'e.g. "subdir/*", "**_vm.dart".',
+  );
+
   parser.addFlag('print-test-output',
       help: 'Print Test output', defaultsTo: false);
 
@@ -50,11 +64,20 @@ Future main(List<String> arguments) async {
     excludeGlob = Glob(options['exclude']);
   }
 
+  Glob allSrcExcludeGlob;
+  if (options['import-all-source-exclude'] is String) {
+    allSrcExcludeGlob = Glob(options['add-all-source-exclude']);
+  }
+
   String port = options['port'];
 
   final testFiles = findTestFiles(packageRoot, excludeGlob: excludeGlob);
+  final srcFiles = options['import-all-source']
+      ? findSourceFiles(packageRoot, excludeGlob: allSrcExcludeGlob) 
+      : null;
+
   print('Found ${testFiles.length} test files.');
-  generateMainScript(packageRoot, testFiles);
+  generateMainScript(packageRoot, testFiles, sourceFiles: srcFiles);
   print('Generated test-all script in test/.test_coverage.dart. '
       'Please make sure it is added to .gitignore.');
   await runTestsAndCollect(Directory.current.path, port,
