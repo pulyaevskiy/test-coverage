@@ -16,6 +16,7 @@ dependencies:
   lcov: ^5.3.0
   glob: ^1.1.7
   args: ^1.5.1
+  pubspec_parse: ^0.1.5
 
 dev_dependencies:
   test: ^1.0.0
