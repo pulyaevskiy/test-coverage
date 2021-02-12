@@ -1,3 +1,16 @@
+## 0.6.0
+
+- Improved log output.
+- New Options:
+  - `timeout`: for all tests timeout (in seconds).
+  - `force-collect`: to force collect of coverage using an STDOUT mark, avoiding Isolate pause issues.
+  - `force-exit-after-collect`: forces process to exit after collect coverage.
+  - `gen-report`: generates HTML report.
+  - `open-report`: opens HTML report in default browser.
+- Fix issue when trying to kill process when Dart is executed from a `bash`/`sh` script.
+  (usually in Flutter SDK installations).
+- Improved documentation.
+
 ## 0.5.0
 
 - Updated dependency on coverage package to ^0.14.1 (#24)
