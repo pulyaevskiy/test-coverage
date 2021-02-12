@@ -1,4 +1,12 @@
-# test_coverage [![Build Status](https://travis-ci.com/pulyaevskiy/test-coverage.svg?branch=master)](https://travis-ci.com/pulyaevskiy/test-coverage) [![Pub](https://img.shields.io/pub/v/test_coverage.svg?style=flat)](https://pub.dartlang.org/packages/test_coverage) ![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/master/coverage_badge.svg?sanitize=true)
+# test_coverage 
+
+[![pub package](https://img.shields.io/pub/v/test_coverage.svg?logo=dart&logoColor=00b9fc)](https://pub.dartlang.org/packages/test_coverage)
+[![CI](https://img.shields.io/github/workflow/status/pulyaevskiy/test-coverage/Dart%20CI/master?logo=github-actions&logoColor=white)](https://github.com/pulyaevskiy/test-coverage/actions)
+![Coverage](https://raw.githubusercontent.com/pulyaevskiy/test-coverage/master/coverage_badge.svg?sanitize=true)
+[![Last Commits](https://img.shields.io/github/last-commit/pulyaevskiy/test-coverage?logo=git&logoColor=white)](https://github.com/pulyaevskiy/test-coverage/commits/master)
+[![Pull Requests](https://img.shields.io/github/issues-pr/pulyaevskiy/test-coverage?logo=github&logoColor=white)](https://github.com/pulyaevskiy/test-coverage/pulls)
+[![Code size](https://img.shields.io/github/languages/code-size/pulyaevskiy/test-coverage?logo=github&logoColor=white)](https://github.com/pulyaevskiy/test-coverage)
+[![License](https://img.shields.io/github/license/pulyaevskiy/test-coverage?logo=open-source-initiative&logoColor=green)](https://github.com/pulyaevskiy/test-coverage/blob/master/LICENSE)
 
 A simple command-line tool to collect test coverage information from
 Dart VM tests. It is useful if you need to generate coverage reports
@@ -10,13 +18,13 @@ Add dev dependency to your `pubspec.yaml`:
 
 ```yaml
 dev_dependencies:
-  test_coverage: ^0.4.2
+  test_coverage: ^0.6.0
 ```
 
-Run `pub get` to install. Then, in the root of your project run:
+Run `dart pub get` to install. Then, in the root of your project run:
 
 ```bash
-pub run test_coverage
+dart pub run test_coverage
 ```
 
 Result is saved in `coverage/lcov.info`. If you have `lcov` tool
@@ -28,6 +36,26 @@ genhtml -o coverage coverage/lcov.info
 # Open in the default browser (mac):
 open coverage/index.html
 ```
+
+#### Generating HTML report
+
+You can also use the option `--gen-report`, usually accompanied by option `--open-report`:
+
+```bash
+dart pub run test_coverage --gen-report --open-report
+```
+
+#### Minimal coverage check
+The option `--min-coverage` is used to check the minimal coverage percentage,
+exiting `0` when OK, or `1` if coverage lower:
+
+```bash
+dart pub run test_coverage --min-coverage 70 --gen-report --open-report
+```
+
+#### Test output
+
+Use the option `--print-test-output` to show test output in console.
 
 ## Integrations
 
@@ -48,6 +76,41 @@ project root directory. You can add it to Git and use in README.md on Github as 
 ```
 
 If you don't need it you can pass `--no-badge` flag when running test coverage.
+
+
+## Advanced options
+
+### Example 1
+ - Dart Observatory port 8789.
+ - Minimal coverage of 40%.
+ - No badge generation.
+ - Print tests output.
+ - Forces collect, avoiding Isolate pause.
+ - Forces process to exit after collect coverage.
+ - Generates report using `genhtml`.
+ - Opens report in default browser.
+
+```shell 
+dart pub run test_coverage --port 8789 --min-coverage 40 --no-badge --print-test-output --force-collect --force-exit-after-collect --gen-report --open-report
+```
+
+### Example 2
+- Print tests output.
+- Forces collect, avoiding Isolate pause.
+- Forces process to exit after collect coverage.
+- Timeout of 60s to run all tests.
+
+```shell 
+dart pub run test_coverage --print-test-output --force-collect --force-exit-after-collect --timeout 60
+```
+
+## Help
+
+See `--help` for all options and descriptions.
+
+```shell
+dart pub run test_coverage --help
+```
 
 ## Known limitations
 
@@ -107,14 +170,21 @@ Feel free to file feature requests and bug reports at the
 ### 4. Minimal coverage percentage
 
 Set minimal coverage percentage to pass
-`min-coverage` percentage value of coverage.
+`--min-coverage` percentage value of coverage.
 
-### 5. See test output
-`print-test-output` to show test output.
+## Features and bugs
 
-Show output of tests
+Please file feature requests and bugs at the [issue tracker][tracker].
 
-Feel free to file feature requests and bug reports at the
-[issue tracker][].
+[tracker]: https://github.com/pulyaevskiy/test-coverage/issues
 
-[issue tracker]: https://github.com/pulyaevskiy/test-coverage/issues
+## Author
+
+- Anatoly Pulyaevskiy: [pulyaevskiy@GitHub](https://github.com/pulyaevskiy)
+
+### Contributors
+- Graciliano M. Passos: [gmpassos@GitHub](https://github.com/gmpassos).
+
+## License
+
+[BSD-3-Clause License](https://github.com/pulyaevskiy/test-coverage/blob/master/LICENSE).
