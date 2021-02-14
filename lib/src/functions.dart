@@ -136,6 +136,12 @@ Future<void> runTestsAndCollect(String packageRoot, String port,
     coverageDir.createSync();
   }
   File(path.join(coveragePath, 'lcov.info')).writeAsStringSync(coverageData);
+
+  final prettyFormatter = coverage.PrettyPrintFormatter(
+      resolver, coverage.Loader(),
+      reportOn: ['lib${path.separator}']);
+  final jsonData = await prettyFormatter.format(hitmap);
+  File(path.join(coveragePath, 'coverage.txt')).writeAsStringSync(jsonData);
 }
 
 // copied from `coverage` package

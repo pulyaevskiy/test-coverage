@@ -24,6 +24,7 @@ void main() {
     final savedCurrent = Directory.current;
     final testFile = File(path.join(stubPath, 'test', '.test_coverage.dart'));
     final lcovFile = File(path.join(coverageDir.path, 'lcov.info'));
+    final prettyFile = File(path.join(coverageDir.path, 'coverage.txt'));
     final badgeFile = File(path.join(stubPath, 'coverage_badge.svg'));
 
     setUp(() {
@@ -55,6 +56,7 @@ void main() {
       await runTestsAndCollect(stubPath, '8585');
 
       expect(lcovFile.existsSync(), isTrue);
+      expect(prettyFile.existsSync(), isTrue);
 
       final coverageValue = calculateLineCoverage(lcovFile);
       expect(coverageValue, 1.0);
