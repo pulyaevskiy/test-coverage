@@ -45,12 +45,12 @@ Future main(List<String> arguments) async {
     return;
   }
 
-  Glob excludeGlob;
+  Glob? excludeGlob;
   if (options['exclude'] is String) {
     excludeGlob = Glob(options['exclude']);
   }
 
-  String port = options['port'];
+  String? port = options['port'];
 
   final testFiles = findTestFiles(packageRoot, excludeGlob: excludeGlob);
   print('Found ${testFiles.length} test files.');
