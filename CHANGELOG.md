@@ -1,3 +1,8 @@
+## 0.6.0
+
+- Migrated code to null safety (#33)
+- Removed discontinued lcov dependency (#38)
+
 ## 0.5.0
 
 - Updated dependency on coverage package to ^0.14.1 (#24)
