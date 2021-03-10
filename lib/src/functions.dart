@@ -7,7 +7,6 @@ import 'dart:io';
 
 import 'package:coverage/coverage.dart' as coverage;
 import 'package:glob/glob.dart';
-import 'package:lcov/lcov.dart';
 import 'package:path/path.dart' as path;
 
 final _sep = path.separator;
@@ -153,13 +152,16 @@ Uri _extractObservatoryUri(String str) {
 }
 
 double calculateLineCoverage(File lcovReport) {
-  final report = Report.fromCoverage(lcovReport.readAsStringSync());
+  final lflhRegex = RegExp(r'(LF|LH):\d*$');
+  final reportFileContent = lcovReport.readAsLinesSync();
+  reportFileContent.retainWhere((l) => lflhRegex.hasMatch(l));
   var totalLines = 0;
   var hitLines = 0;
-  for (final rec in report.records) {
-    for (final line in rec.lines.data) {
+  for (final line in reportFileContent) {
+    if (line.startsWith('LF')) {
       totalLines++;
-      hitLines += (line.executionCount > 0) ? 1 : 0;
+    } else {
+      hitLines++;
     }
   }
   return hitLines / totalLines;

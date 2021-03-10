@@ -13,7 +13,6 @@ executables:
 dependencies:
   coverage: ^0.14.1
   path: ^1.6.1
-  lcov: ^5.3.0
   glob: ^1.1.7
   args: ^1.5.1
 
