@@ -152,18 +152,21 @@ Uri? _extractObservatoryUri(String str) {
 }
 
 double calculateLineCoverage(File lcovReport) {
-  final lflhRegex = RegExp(r'(LF|LH):\d*$');
+  final lflhRegex = RegExp(r'^L[FH]:(\d*)$');
   final reportFileContent = lcovReport.readAsLinesSync();
   reportFileContent.retainWhere((l) => lflhRegex.hasMatch(l));
   var totalLines = 0;
   var hitLines = 0;
   for (final line in reportFileContent) {
+    var valueString = lflhRegex.matchAsPrefix(line)?.group(1) ?? '0';
+    var value = int.tryParse(valueString) ?? 0;
     if (line.startsWith('LF')) {
-      totalLines++;
+      totalLines += value;
     } else {
-      hitLines++;
+      hitLines += value;
     }
   }
+  if (totalLines == 0) return 1;
   return hitLines / totalLines;
 }
 
