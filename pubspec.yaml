@@ -11,11 +11,11 @@ executables:
   test_coverage:
 
 dependencies:
-  coverage: ^0.14.1
+  coverage: ^1.0.1
   path: ^1.6.1
   lcov: ^5.3.0
   glob: ^2.0.0
-  args: ^1.5.1
+  args: ^2.0.0
 
 dev_dependencies:
   test: ^1.0.0
